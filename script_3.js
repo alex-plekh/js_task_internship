@@ -435,29 +435,29 @@ const fields = [
 
 // 1)
 
-const sortObj = objects.sort(function (a,b){
-    let _a = a.date.split("-").reverse().join("");
-    let _b = b.date.split("-").reverse().join("");
-    if(_a > _b){
-        return 1;
-    } else if(_a < _b){
-        return -1;
-    }else {
-        return 0;
-    }
-})
-console.log(sortObj)
+// const sortObj = objects.sort(function (a,b){
+//     let _a = a.date.split("-").reverse().join("");
+//     let _b = b.date.split("-").reverse().join("");
+//     if(_a > _b){
+//         return 1;
+//     } else if(_a < _b){
+//         return -1;
+//     }else {
+//         return 0;
+//     }
+// })
+// console.log(sortObj)
 
 // 2. Необходимо получить массив объектов которые имеют enabled: true
 
 // 2)
-let enabledList = [];
-for (let i = 0; i < objects.length; i++) {
-    if (objects[i].enabled === true){
-        enabledList.push(objects[i]);
-    }
-}
-console.log(enabledList);
+// let enabledList = [];
+// for (let i = 0; i < objects.length; i++) {
+//     if (objects[i].enabled){
+//         enabledList.push(objects[i]);
+//     }
+// }
+// console.log(enabledList);
 
 // 3. Необходимо получить объект объектов собранных по месяцам и годам.
 //     Формат должен быть
@@ -478,48 +478,48 @@ console.log(enabledList);
 // }
 
 // 3)
-let result = {};
-for (let i = 0; i < objects.length; i++) {
-    let year = objects[i].date.split('-')[2];
-    result[year] = {};
-    for (let j = 0; j < objects.length; j++) {
-        if (objects[j].date.split('-')[2] === year) {
-            let month = objects[j].date.split('-')[1]
-            result[year][month] = [];
-            for (let k = 0; k < objects.length; k++) {
-                if (objects[k].date.split('-')[1] === month) {
-                    result[year][month].push(objects[k]);
-                }
-            }
-        }
-    }
-}
-console.log(result)
+// let result = {};
+// for (let i = 0; i < objects.length; i++) {
+//     let year = objects[i].date.split('-')[2];
+//     result[year] = {};
+//     for (let j = 0; j < objects.length; j++) {
+//         if (objects[j].date.split('-')[2] === year) {
+//             let month = objects[j].date.split('-')[1]
+//             result[year][month] = [];
+//             for (let k = 0; k < objects.length; k++) {
+//                 if (objects[k].date.split('-')[1] === month) {
+//                     result[year][month].push(objects[k]);
+//                 }
+//             }
+//         }
+//     }
+// }
+// console.log(result)
 
 // 4. Необходимо получить массив объектов которым необходимо заменить
 // relationId на полный объект данных.
 
 // 4)
 
-let result = [];
-for (let i = 0; i < objects.length; i++) {
-    if (objects[i].relation) {
-        objects[i].relation.relationId = objects[objects[i].relation.relationId - 1];
-        result.push(objects[i]);
-    }
-}
-console.log(result)
-
-// 5. Необходимо получить массив объектов у которых есть relation.
-
-// 5)
-let relationList = [];
-for (let i = 0; i < objects.length; i++) {
-    if (objects[i].relation !== null) {
-        relationList.push(objects[i]);
-    }
-}
-console.log(relationList);
+// let result = [];
+// for (let i = 0; i < objects.length; i++) {
+//     if (objects[i].relation) {
+//         objects[i].relation.relationId = objects[objects[i].relation.relationId - 1];
+//         result.push(objects[i]);
+//     }
+// }
+// console.log(result)
+//
+// // 5. Необходимо получить массив объектов у которых есть relation.
+//
+// // 5)
+// let relationList = [];
+// for (let i = 0; i < objects.length; i++) {
+//     if (objects[i].relation) {
+//         relationList.push(objects[i]);
+//     }
+// }
+// console.log(relationList);
 
 // 6. Необходимо получить получить объект в котором сформировать данные по
 // relation объектам. Формат:
@@ -539,34 +539,34 @@ console.log(relationList);
 
 // 7)
 //1.for
-let is2020 = () => {
-    let result =[];
-    for (const item of objects) {
-        if(item.date.split('-')[2] === '2020'){
-            item.enabled = true;
-            result.push(item);
-        }
-    } return result;
-}
-console.log(is2020());
+// let is2020 = () => {
+//     let result =[];
+//     for (const item of objects) {
+//         if(item.date.split('-')[2] === '2020'){
+//             item.enabled = true;
+//             result.push(item);
+//         }
+//     } return result;
+// }
+// console.log(is2020());
+// //
+// //2.filter.map
+// let is2020 = objects.filter(item => item.date.split('-')[2] === '2020').map(item => {
+//     item.enabled = true;
+//     return item;
+// });
 //
-//2.filter.map
-let is2020 = objects.filter(item => item.date.split('-')[2] === '2020').map(item => {
-    item.enabled = true;
-    return item;
-});
-
-console.log(is2020);
-
-//3.reduce
-let result = objects.reduce((acc, item) => {
-    if (item.date.split('-')[2] === '2020') {
-        item.enabled = true;
-        acc.push(item);
-    }
-    return acc;
-}, [])
-console.log(result);
+// console.log(is2020);
+//
+// //3.reduce
+// let result = objects.reduce((acc, item) => {
+//     if (item.date.split('-')[2] === '2020') {
+//         item.enabled = true;
+//         acc.push(item);
+//     }
+//     return acc;
+// }, [])
+// console.log(result);
 
 
 // 8. Необходимо получить массив объектов. Объект должен иметь значение
@@ -635,28 +635,28 @@ console.log(result);
 
 // 9)
 //1.for
-let relation1 = ()=> {
-    for (const item of objects) {
-        return item.relation !== null;
-    }
-}
-//2.find
-let relation2 = objects.find((item) => item.relation === null);
-console.log(relation1());
-console.log(relation2===null);
+// let relation1 = ()=> {
+//     for (const item of objects) {
+//         return item.relation !== null;
+//     }
+// }
+// //2.every
+// let relation2 = objects.every((item) => item.relation === null);
+// console.log(relation1());
+// console.log(relation2);
 
 
 //10. Необходимо получить понимание есть ли объекты с enabled: true
 
 // 10)
 // 1.for
-let enabled1 = ()=> {
-    for (const item of objects) {
-        return item.enabled === true;
-    }
-}
-//2.filter
-let enabled2 = objects.filter((item) => item.enabled === true);
-
-console.log(enabled1());
-console.log(enabled2!=null);
+// let enabled1 = ()=> {
+//     for (const item of objects) {
+//         return item.enabled === true;
+//     }
+// }
+// //2.some
+// let enabled2 = objects.some((item) => item.enabled);
+//
+// console.log(enabled1());
+// console.log(enabled2);
