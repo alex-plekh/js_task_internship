@@ -437,13 +437,13 @@ const fields = [
 // 1)
 // let result = [];
 // for (let i = 0; i < fields.length; i++) {
-//     if (fields[i].permissions.view === true) {
+//     if (fields[i].permissions.view) {
 //         result.push(fields[i]);
 //     }
 // }
 
 //let isPermissionViewTrue = fields.filter(item => item.permissions.view);
-// console.log(result);
+//console.log(result);
 //console.log(isPermissionViewTrue);
 
 // 2. Необходимо сформировать массив который будет
@@ -537,7 +537,7 @@ const fields = [
 // 7. Необходимо сформировать массив полей в котором будет
 // изменен ключ edit на true, в том случае когда у нас view тоже true
 
-// let changeView = fields.filter(item => item.permissions.view ===true).map(item =>{
+// let changeView = fields.filter(item => item.permissions.view).map(item =>{
 //     item.permissions.edit=true;
 //     return item;
 // });
@@ -572,20 +572,19 @@ const fields = [
 // 10. Необходимо получить ответ на понимание того есть ли у
 // нас хоть одно поле у которого все пермиссии true
 
-// 10)
 // function isPermissionsTrue(element, index, array) {
-//     return element.permissions.view === true && element.permissions.edit === true && element.permissions.remove === true;
+//     return element.permissions.view && element.permissions.edit && element.permissions.remove;
 // }
 // let isPermissionTrue1 = ()=> {
 //     for (const item of fields) {
-//         if(item.permissions.view === true && item.permissions.edit === true && item.permissions.remove === true){
+//         if(item.permissions.view && item.permissions.edit && item.permissions.remove){
 //             return true;
 //         }
 //         return false;
 //     }
 // }
 // let isPermissionTrue2 = fields.some(isPermissionsTrue);
-// let isPermissionTrue3 = fields.filter(isPermissionsTrue).map(item => item);
+// let isPermissionTrue3 = fields.filter(isPermissionsTrue);
 //
 // console.log(isPermissionTrue1());
 // console.log(isPermissionTrue2);
