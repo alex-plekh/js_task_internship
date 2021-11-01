@@ -478,6 +478,7 @@ const fields = [
 // }
 
 // 3)
+// for.
 // let result = {};
 // for (let i = 0; i < objects.length; i++) {
 //     let year = objects[i].date.split('-')[2];
@@ -495,6 +496,17 @@ const fields = [
 //     }
 // }
 // console.log(result)
+
+// reduce
+// let result = objects.reduce((acc, item) =>{
+//     const [] = item.date.split('')
+//         if (acc[yyyy]){
+//             if (acc [yyyy][mm]){
+//                 return {...acc [yyyy] : {...acc [mm] : [item]}}
+//             }
+//             }
+// })
+
 
 // 4. Необходимо получить массив объектов которым необходимо заменить
 // relationId на полный объект данных.
@@ -521,7 +533,7 @@ const fields = [
 // }
 // console.log(relationList);
 
-// 6. Необходимо получить получить объект в котором сформировать данные по
+// 6. Необходимо получить объект в котором сформировать данные по
 // relation объектам. Формат:
 // (должно быть несколько решений, через циклы(for), map и другие
 // перебирающие методы, reduce)
@@ -531,7 +543,67 @@ const fields = [
 // ....
 // }
 
-// попробую сделать!
+// 6)
+// for
+// let getObjectRelation = {};
+// let isArrayObject = objects;
+// for (const i of isArrayObject) {
+//     if (i.relation) {
+//         getObjectRelation[i.relation.relationId] = [];
+//         for (const j of isArrayObject) {
+//             if (j.relation && (j.relation.relationId === i.relation.relationId)) {
+//                 getObjectRelation[i.relation.relationId].push(j);
+//             }
+//         }
+//     }
+// }
+// console.log(getObjectRelation)
+
+// reduce
+
+let getObject = objects.reduce((acc, item,relationId) =>{
+    if (item.relation){
+        const object1 = item.relation.relationId;
+        console.log(object1);
+        const object2 = acc[item.relation.relationId];
+        console.log(object2)
+        if (objects.relationId){
+            return {...acc , [relationId]: [...acc [relationId], item]};
+        }else {
+            return [...acc, [relationId] , [item],item];
+        }
+    }
+},[])
+console.log(getObject);
+
+
+let finalResult = objects.reduce((result, value) => {
+    result[value.date.split('-')[2]] = objects.reduce((acc, item) => {
+        if (item.date.split('-')[2] === value.date.split('-')[2]) {
+            acc[item.date.split('-')[1]] = objects.reduce((acc, item) => {
+                if (item.date.split('-')[1] === item.date.split('-')[1] && item.date.split('-')[2] === item.date.split('-')[2]) {
+                    acc.push(item);
+                }
+                return acc;
+            }, [])
+        }
+        return item;
+    }, {})
+    return result;
+}, {})
+console.log(finalResult)
+
+// let result = objects.reduce((acc, item) => {
+//     if (item.date.split('-')[2] === '2020') {
+//         item.enabled = true;
+//         acc.push(item);
+//     }
+//     return acc;
+// }, [])
+// console.log(result);
+
+
+
 
 // 7. Необходимо получить массив объектов чья дата приходится на 2020 год и
 // поменять ему ключ enabled на true. (должно быть несколько решений, через
@@ -575,61 +647,14 @@ const fields = [
 // ссылке relationId
 
 // 8)
-// let arr1 = objects.filter(item => item.relation !== null).map(item => {
-//     let relationId = item.relation.relationId;
-//    console.log("id " + item.id + "relation id " +relationId);
-//    item.enabled = objects[relationId - 1].enabled;
-//    console.log("id " + item.id + "relation id " + relationId + "  enabled " + objects[relationId-1].enabled);
-//     return item;
-// });
-//
-// let arr2 = objects.filter(item => item.relation === null).map(item => {
-//     item.enabled = false;
-//     return item;
-// });
-// console.log(arr1);
-// console.log(arr2);
-// let arr3 = arr1.concat(arr2);
-// arr3.sort(function (a, b) {
-//     if (a.id > b.id) {
-//         return 1;
+// let enabledArr = objects.map((item) =>{
+//     if (item.relation){
+//         const obj = objects.find(({ id }) => id === item.relation.relationId);
+//         return { ...item, enabled: obj.enabled};
 //     }
-//     if (a.id < b.id) {
-//         return -1;
-//     }
-//     return 0;
-// });
-// console.log(arr3);
-// let result = [];
-// let relationToEnabled =  () => {
-//
-//     for (let i = 0; i < objects.length; i++) {
-//         if (objects[i].relation !== null) {
-//             let relationId = result[i].relation.relationId;
-//             result[i].enabled = objects[relationId-1].enabled;
-//
-//         } else {
-//            result[i].enabled = false;
-//
-//         }
-//
-//     } return result;
-// }
-// relationToEnabled();
-//  console.log(relationToEnabled());
-
-// let relationToEnabled = objects.map(item => {
-//     if(item.relation===null){
-//         item.enabled=false
-//     }else{
-//
-// }
-//     return item;
-// });
-//
-// console.log(relationToEnabled);
-//не получилось сделать что бы правильно работало, это все варианты что делал
-
+//     return {...item, enabled: false};
+// })
+// console.log(enabledArr);
 
 //9. Необходимо получить понимание того, что есть ли у всех объектов relation или нет
 
