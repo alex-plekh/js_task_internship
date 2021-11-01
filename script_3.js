@@ -561,37 +561,35 @@ const fields = [
 
 // reduce
 
-let getObject = objects.reduce((acc, item,relationId) =>{
+let getObject = objects.reduce((acc, item) =>{
     if (item.relation){
-        const object1 = item.relation.relationId;
-        console.log(object1);
-        const object2 = acc[item.relation.relationId];
-        console.log(object2)
-        if (objects.relationId){
-            return {...acc , [relationId]: [...acc [relationId], item]};
+        const arr = item.relation.relationId;
+        const obj = acc[item];
+        if (obj){
+            return {...acc , [item]: [...acc [item], item]};
         }else {
-            return [...acc, [relationId] , [item],item];
+            return {...acc, [arr]:  [arr]};
         }
     }
 },[])
 console.log(getObject);
 
 
-let finalResult = objects.reduce((result, value) => {
-    result[value.date.split('-')[2]] = objects.reduce((acc, item) => {
-        if (item.date.split('-')[2] === value.date.split('-')[2]) {
-            acc[item.date.split('-')[1]] = objects.reduce((acc, item) => {
-                if (item.date.split('-')[1] === item.date.split('-')[1] && item.date.split('-')[2] === item.date.split('-')[2]) {
-                    acc.push(item);
-                }
-                return acc;
-            }, [])
-        }
-        return item;
-    }, {})
-    return result;
-}, {})
-console.log(finalResult)
+// let finalResult = objects.reduce((result, value) => {
+//     result[value.date.split('-')[2]] = objects.reduce((acc, item) => {
+//         if (item.date.split('-')[2] === value.date.split('-')[2]) {
+//             acc[item.date.split('-')[1]] = objects.reduce((acc, item) => {
+//                 if (item.date.split('-')[1] === item.date.split('-')[1] && item.date.split('-')[2] === item.date.split('-')[2]) {
+//                     acc.push(item);
+//                 }
+//                 return acc;
+//             }, [])
+//         }
+//         return item;
+//     }, {})
+//     return result;
+// }, {})
+// console.log(finalResult)
 
 // let result = objects.reduce((acc, item) => {
 //     if (item.date.split('-')[2] === '2020') {
