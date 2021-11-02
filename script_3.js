@@ -451,6 +451,8 @@ const fields = [
 // 2. Необходимо получить массив объектов которые имеют enabled: true
 
 // 2)
+
+// for
 // let enabledList = [];
 // for (let i = 0; i < objects.length; i++) {
 //     if (objects[i].enabled){
@@ -458,6 +460,13 @@ const fields = [
 //     }
 // }
 // console.log(enabledList);
+
+// filter,map
+// let getEnabledTrue = objects.filter(item => item.enabled).map(item =>{
+//     return item;
+// })
+// console.log(getEnabledTrue);
+
 
 // 3. Необходимо получить объект объектов собранных по месяцам и годам.
 //     Формат должен быть
@@ -479,7 +488,6 @@ const fields = [
 
 // 3)
 // for.
-
 // let result = {};
 // for (let i = 0; i < objects.length; i++) {
 //     let year = objects[i].date.split('-')[2];
@@ -516,32 +524,54 @@ const fields = [
 // }, {})
 // console.log(gerObjObj);
 
-//map
-
 
 // 4. Необходимо получить массив объектов которым необходимо заменить
 // relationId на полный объект данных.
 
 // 4)
-
+// for
 // let result = [];
 // for (let i = 0; i < objects.length; i++) {
 //     if (objects[i].relation) {
-//         objects[i].relation.relationId = objects[objects[i].relation.relationId - 1];
+//         objects[i].relation.relationId = objects[objects[i].relation.relationId];
 //         result.push(objects[i]);
+//     }else{
+//         result.push(objects[i])
 //     }
 // }
 // console.log(result)
-//
+
+// filter,map
+// let getObjectDate = objects.map(item => {
+//     if (item.relation) {
+//         let obj = objects.find(rel => rel.id === item.relation.relationId);
+//         return {
+//             ...item, relation: obj
+//         }
+//         }else{
+//             return item;
+//         }
+// })
+// console.log(getObjectDate);
+
+
+
 // // 5. Необходимо получить массив объектов у которых есть relation.
 //
 // // 5)
+// for
 // let relationList = [];
 // for (let i = 0; i < objects.length; i++) {
 //     if (objects[i].relation) {
 //         relationList.push(objects[i]);
 //     }
 // }
+// console.log(relationList);
+
+// filter,map
+// let relationList = objects.filter(item => item.relation).map(item => {
+//     return item;
+// })
 // console.log(relationList);
 
 // 6. Необходимо получить объект в котором сформировать данные по
