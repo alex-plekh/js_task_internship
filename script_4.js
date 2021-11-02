@@ -462,15 +462,25 @@ const fields = [
 //     Взаимодействуем со вторым массивом
 
 // 3)
+// for
 // let result = [];
-//
 // for (let i = 0; i < fields.length; i++) {
 //     if (fields[i].objectRelation) {
-//         fields[i].objectRelation.objectId = fields[fields[i].objectRelation.objectId];
+//         fields[i].objectRelation.objectId = objects[fields[i].objectRelation.objectId];
 //         result.push(fields[i]);
 //     }
 // }
 //
+// console.log(result);
+
+// map
+// let result = fields.map((item) =>{
+//     if (item.objectRelation){
+//         item.objectRelation.objectId = objects[item.objectRelation.objectId];
+//             return item;
+//     }
+//     return item;
+// });
 // console.log(result);
 
 // 4. Необходимо сформировать массив полей с
@@ -480,7 +490,8 @@ const fields = [
 // • если у поля есть objectRelation, то ставим все пермисии
 // true, если объект objectRelation имеет enabled: true. Если
 // же enabled: false, то ставим все пермиссии false
-//
+// for
+
 // let result = [];
 // for (let i = 0; i < fields.length; i++) {
 //     if (fields[i].objectRelation) {
@@ -495,6 +506,29 @@ const fields = [
 //     }
 // }
 // console.log(result);
+
+// map
+// let result = fields.map((item) => {
+//     if (!item.objectRelation) {
+//        return item;
+//     }else{
+//         for (let i of fields ){
+//     if (item.objectRelation.relationId === i.id && i.enabled ) {
+//         item.permissions.view = true;
+//         item.permissions.edit = true;
+//         item.permissions.remove = true;
+//         return item;
+//     } else if (item.objectRelation.objectId === i.id) {
+//                 item.permissions.view = false;
+//                 item.permissions.edit = false;
+//                 item.permissions.remove = false;
+//                 return item;
+//             }
+//         }
+//     }return item;
+// })
+// console.log(result);
+
 
 // 5. Необходимо сформировать массив объектов только тех у
 // которых есть поля
@@ -516,9 +550,8 @@ const fields = [
 // …
 // }
 
-
+// for
 // let result = {};
-//
 // for (let item of fields){
 //     if (item.objectRelation){
 //         result[item.objectRelation.objectId] = [];
@@ -534,6 +567,11 @@ const fields = [
 //
 // console.log(result);
 
+// reduce
+let result = fields.reduce((acc,item) => {
+
+})
+
 // 7. Необходимо сформировать массив полей в котором будет
 // изменен ключ edit на true, в том случае когда у нас view тоже true
 
@@ -543,8 +581,18 @@ const fields = [
 // });
 // console.log(changeView);
 
+// reduce
+// let changeView = fields.reduce((acc,item) => {
+//     if (item.permissions.view){
+//         item.permissions.edit = true;
+//         acc.push(item);
+//     }
+//     return acc;
+// },[])
+// console.log(changeView);
 
-// 8. Необходимо сформировать массив полей который будетсодержать только те поля у которых есть objectRelation и
+
+// 8. Необходимо сформировать массив полей который будет содержать только те поля у которых есть objectRelation и
 // проставить всем этим полям дополнительный ключ relations: true
 
 // let objectRelationExists = fields.filter(item => item.objectRelation!=null).map(item => {
@@ -553,6 +601,14 @@ const fields = [
 // });
 // console.log(objectRelationExists);
 
+// reduce
+// let objectRelationExists = fields.reduce((acc,item) => {
+//     if (item.objectRelation){
+//         item.relations = true;
+//        acc.push(item);
+//     } return acc;
+// },[])
+// console.log(objectRelationExists);
 
 // 9. Необходимо получить массив полей отсортированных по
 // fieldName
