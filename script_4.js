@@ -533,8 +533,11 @@ const fields = [
 // 5. Необходимо сформировать массив объектов только тех у
 // которых есть поля
 
-// let isFieldExists =  fields.filter(item => Object.keys(item).length > 0);
-// console.log(isFieldExists);
+//  5)
+// let isFieldExists = objects.filter(item => item.relation).map((item) => {
+//     return item;
+// })
+// console.log(isFieldExists)
 
 
 // 6. Необходимо сформировать объект такого формата
@@ -567,10 +570,16 @@ const fields = [
 //
 // console.log(result);
 
-// reduce
-let result = fields.reduce((acc,item) => {
+// filter
+// let result = {};
+// for (let value of objects) {
+//     if (value.relation) {
+//         result[value.relation.relationId] = objects.filter((item) =>
+//             (item.relation && item.relation.relationId === value.relation.relationId))
+//     }
+// }
+// console.log(result);
 
-})
 
 // 7. Необходимо сформировать массив полей в котором будет
 // изменен ключ edit на true, в том случае когда у нас view тоже true
