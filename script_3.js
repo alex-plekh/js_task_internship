@@ -479,6 +479,7 @@ const fields = [
 
 // 3)
 // for.
+
 // let result = {};
 // for (let i = 0; i < objects.length; i++) {
 //     let year = objects[i].date.split('-')[2];
@@ -498,14 +499,24 @@ const fields = [
 // console.log(result)
 
 // reduce
-// let result = objects.reduce((acc, item) =>{
-//     const [] = item.date.split('')
-//         if (acc[yyyy]){
-//             if (acc [yyyy][mm]){
-//                 return {...acc [yyyy] : {...acc [mm] : [item]}}
-//             }
-//             }
-// })
+// let slicedYear = (objDate) => objDate.date.slice(6,10);
+// let slicedMonth = (objDate) => objDate.date.slice(3,5);
+// let gerObjObj = objects.reduce((acc, item) => {
+//     let year =  slicedYear(item);
+//     let month = slicedMonth(item);
+//     if (acc[year]) {
+//         if (acc[year][month]) {
+//             return {...acc, [year]:{...acc[year], [month]:[...acc[year][month], item]}};
+//         } else {
+//             return {...acc, [year]:{...acc[year], [month]:[item]}};
+//         }
+//     } else {
+//         return {...acc, [year]:{[month]:[item]}};
+//     };
+// }, {})
+// console.log(gerObjObj);
+
+//map
 
 
 // 4. Необходимо получить массив объектов которым необходимо заменить
@@ -561,45 +572,21 @@ const fields = [
 
 // reduce
 
-let getObject = objects.reduce((acc, item) =>{
-    if (item.relation){
-        const arr = item.relation.relationId;
-        const obj = acc[item];
-        if (obj){
-            return {...acc , [item]: [...acc [item], item]};
-        }else {
-            return {...acc, [arr]:  [arr]};
-        }
-    }
-},[])
-console.log(getObject);
-
-
-// let finalResult = objects.reduce((result, value) => {
-//     result[value.date.split('-')[2]] = objects.reduce((acc, item) => {
-//         if (item.date.split('-')[2] === value.date.split('-')[2]) {
-//             acc[item.date.split('-')[1]] = objects.reduce((acc, item) => {
-//                 if (item.date.split('-')[1] === item.date.split('-')[1] && item.date.split('-')[2] === item.date.split('-')[2]) {
-//                     acc.push(item);
-//                 }
-//                 return acc;
-//             }, [])
+// let getObject = objects.reduce((acc, item) =>{
+//     if (item.relation){
+//         const index = item.relation.relationId;
+//         const obj = acc[index];
+//         if (obj){
+//             return {...acc , [index]: [...acc [index], item]};
+//         }else {
+//             return {...acc, [index]:  [item]};
 //         }
-//         return item;
-//     }, {})
-//     return result;
-// }, {})
-// console.log(finalResult)
-
-// let result = objects.reduce((acc, item) => {
-//     if (item.date.split('-')[2] === '2020') {
-//         item.enabled = true;
-//         acc.push(item);
 //     }
 //     return acc;
-// }, [])
-// console.log(result);
+// },{})
+// console.log(getObject);
 
+//map
 
 
 
