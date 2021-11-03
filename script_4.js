@@ -464,22 +464,22 @@ const fields = [
 // 3)
 // for
 // let result = [];
-// for (let i = 0; i < fields.length; i++) {
-//     if (fields[i].objectRelation) {
-//         fields[i].objectRelation.objectId = objects[fields[i].objectRelation.objectId];
-//         result.push(fields[i]);
+// for (let value of fields) {
+//     if (value.objectRelation) {
+//         let newObj = objects.find(({id}) => id === value.objectRelation.objectId)
+//         value.objectRelation.objectId = newObj;
+//         result.push(value) 
 //     }
 // }
-//
-// console.log(result);
+// console.log(result)
 
 // map
 // let result = fields.map((item) =>{
 //     if (item.objectRelation){
-//         item.objectRelation.objectId = objects[item.objectRelation.objectId];
-//             return item;
+//         let newObj = objects.find(({id}) => id === item.objectRelation.objectId)
+//         return  {...item, objectRelation: {objectId: newObj}}
 //     }
-//     return item;
+//     return {...item};
 // });
 // console.log(result);
 
@@ -534,11 +534,8 @@ const fields = [
 // которых есть поля
 
 //  5)
-// let isFieldExists = objects.filter(item => item.relation).map((item) => {
-//     return item;
-// })
+// let isFieldExists = objects.filter(item => item.relation);
 // console.log(isFieldExists)
-
 
 // 6. Необходимо сформировать объект такого формата
 // {
@@ -580,6 +577,20 @@ const fields = [
 // }
 // console.log(result);
 
+// reduce
+// let result = fields.reduce((acc,item) => {
+//     if (item.objectRelation) {
+//         let idObg = item.objectRelation.objectId;
+//         if (acc[idObg]) {
+//             return {...acc, [idObg]:[...acc[idObg], {[item.id]: item.permissions}]}
+//         } else {
+//             return {...acc, [idObg]: [{[item.id]: item.permissions}]}
+//         }
+//     } else {
+//             return acc;
+//         }
+// },{});
+// console.log(result);
 
 // 7. Необходимо сформировать массив полей в котором будет
 // изменен ключ edit на true, в том случае когда у нас view тоже true
