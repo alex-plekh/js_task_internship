@@ -462,8 +462,9 @@ const fields = [
 // console.log(enabledList);
 
 // filter,map
-// let getEnabledTrue = objects.filter(item => item.enabled).map(item =>{
-//     return item;
+// let getEnabledTrue = objects.filter((item) => {
+//     if (item.enabled) 
+//         return item;
 // })
 // console.log(getEnabledTrue);
 
@@ -530,16 +531,18 @@ const fields = [
 
 // 4)
 // for
+
 // let result = [];
-// for (let i = 0; i < objects.length; i++) {
-//     if (objects[i].relation) {
-//         objects[i].relation.relationId = objects[objects[i].relation.relationId];
-//         result.push(objects[i]);
+// for (let value of objects) {
+//     if (value.relation) {
+//         value.relation.relationId = objects[value.relation.relationId];
+//         result.push(value);
 //     }else{
-//         result.push(objects[i])
+//         result.push(value)
 //     }
 // }
 // console.log(result)
+
 
 // filter,map
 // let getObjectDate = objects.map(item => {
@@ -569,11 +572,12 @@ const fields = [
 // console.log(relationList);
 
 // filter,map
-// let relationList = objects.filter(item => item.relation).map(item => {
-//     return item;
+// let relationList = objects.filter((item) => {
+//     if (item.relation){
+//         return item;
+//     }
 // })
 // console.log(relationList);
-
 // 6. Необходимо получить объект в котором сформировать данные по
 // relation объектам. Формат:
 // (должно быть несколько решений, через циклы(for), map и другие
